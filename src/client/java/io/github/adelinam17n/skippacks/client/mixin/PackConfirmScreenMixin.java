@@ -88,7 +88,7 @@ public abstract class PackConfirmScreenMixin{
             method = "method_55612",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ServerData;setResourcePackStatus(Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;)V", ordinal = 1)
     )
-    private static void addRejectBeforeOptional(Minecraft minecraft, Screen screen, boolean bl, List list, ClientCommonPacketListenerImpl clientCommonPacketListenerImpl, boolean bl2, CallbackInfo ci, @Local DownloadedPackSource downloadedPackSource){
+    private static void addRejectBeforeOptional(Minecraft minecraft, Screen screen, boolean bl, List<?> list, ClientCommonPacketListenerImpl clientCommonPacketListenerImpl, boolean bl2, CallbackInfo ci, @Local DownloadedPackSource downloadedPackSource){
         downloadedPackSource.rejectServerPacks();
     }
 
@@ -102,7 +102,7 @@ public abstract class PackConfirmScreenMixin{
                 """
                         SkipServerResourcePacks mod allows you to decline the resource-pack without getting disconnected using an advanced technique called "lying" to server
 
-                        Clicking "Accept" will download the resource pack, 
+                        Clicking "Accept" will download the resource pack
                         Click "Decline" to proceed without downloading the resource pack
                         """
         ).withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD));

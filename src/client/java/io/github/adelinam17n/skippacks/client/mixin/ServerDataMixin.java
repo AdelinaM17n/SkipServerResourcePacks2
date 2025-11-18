@@ -1,6 +1,7 @@
 package io.github.adelinam17n.skippacks.client.mixin;
 
 
+import com.llamalad7.mixinextras.sugar.Local;
 import io.github.adelinam17n.skippacks.client.ducks.SkippedRequiredPackGetter;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.nbt.CompoundTag;
@@ -9,7 +10,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(ServerData.class)
 public class ServerDataMixin implements SkippedRequiredPackGetter {
@@ -20,10 +20,9 @@ public class ServerDataMixin implements SkippedRequiredPackGetter {
             method = "read",
             at = @At(
                     "TAIL"
-            ),
-            locals = LocalCapture.CAPTURE_FAILHARD
+            )
     )
-    private static void injectTail$read$skipserverpacks(CompoundTag nbtCompound, CallbackInfoReturnable<ServerData> cir, ServerData serverData) {
+    private static void injectTail$read$skipserverpacks(CompoundTag nbtCompound, CallbackInfoReturnable<ServerData> cir, @Local ServerData serverData) {
         if (nbtCompound.contains("requiredPackSkipped")) {
             ((SkippedRequiredPackGetter) serverData).setRequiredPackSkipped$skipserverpacks(
                     nbtCompound.getBoolean("requiredPackSkipped")
@@ -35,10 +34,9 @@ public class ServerDataMixin implements SkippedRequiredPackGetter {
             method = "write",
             at = @At(
                     "TAIL"
-            ),
-            locals = LocalCapture.CAPTURE_FAILHARD
+            )
     )
-    private void injectTail$write$skipserverpacks(CallbackInfoReturnable<CompoundTag> cir, CompoundTag compoundTag) {
+    private void injectTail$write$skipserverpacks(CallbackInfoReturnable<CompoundTag> cir, @Local CompoundTag compoundTag) {
         compoundTag.putBoolean("requiredPackSkipped", requiredPackSkipped);
     }
 

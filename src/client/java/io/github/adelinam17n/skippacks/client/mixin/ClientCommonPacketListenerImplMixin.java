@@ -21,7 +21,7 @@ import java.util.UUID;
 public abstract class ClientCommonPacketListenerImplMixin {
     @Shadow
     @Final
-    protected Connection connection;
+    public Connection connection;
 
     @Shadow
     @Final

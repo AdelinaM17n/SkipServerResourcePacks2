@@ -18,8 +18,7 @@
   },
 
   "mixins": [
-    "skippacks2.mixins.json"
-    ,{
+    {
       "config": "skippacks2.client.mixins.json",
       "environment": "client"
     }
