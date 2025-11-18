@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "skippacks2",
+  "version": "${version}",
+
+  "name": "SkipServerResourcePacks",
+  "description": "Ever lamented having to deal with an ugly resourcepack a server forced on you? ever been annoyed at the performance hits from forced custom resourcepacks? This is the mod for you, This mod allows you to accept a server resource pack without downloading it/enabling it.",
+  "authors": [],
+  "contact": {},
+
+  "license": "LGPL-3.0",
+  "icon": "assets/skippacks2/icon.png",
+
+  "accessWidener" : "skippacks2.accesswidener",
+
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "io.github.adelinam17n.skippacks.client.SkipPacksClient"
+    ],
+    "main": [
+      "io.github.adelinam17n.skippacks.SkipPacks"
+    ]
+  },
+
+  "mixins": [
+    "skippacks2.mixins.json"
+    ,{
+      "config": "skippacks2.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}"
+  },
+
+  "provides": [
+    "skipserverpacks"
+  ]
+
+}

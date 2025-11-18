@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.adelinam17n.skippacks.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ClientCommonPacketListenerImplMixin",
+    "EditServerScreenMixin",
+    "PackConfirmScreenMixin",
+    "ServerPackManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
