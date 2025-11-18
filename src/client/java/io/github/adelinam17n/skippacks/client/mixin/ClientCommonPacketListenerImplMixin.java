@@ -86,7 +86,7 @@ public abstract class ClientCommonPacketListenerImplMixin {
                     Component.literal("To lie or to not lie?"),
                     Component.literal(
                             """
-                                   This server requires you to use their custom resource-pack, with SkipServerResourcepacks mod, you can decline it and still join the server.
+                                   This server requires you to use their custom resource-pack, with the SkipServerResourcepacks mod, you can decline it and still join the server.
                                    
                                    If you want to join the server without downloading the resource-pack, click "Decline".
                                    Be Warned! The server intends you to have this resource-pack, things might not look or function correctly without it!
