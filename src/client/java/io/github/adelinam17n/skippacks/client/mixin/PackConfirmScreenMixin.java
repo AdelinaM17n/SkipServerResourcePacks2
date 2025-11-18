@@ -1,6 +1,7 @@
 package io.github.adelinam17n.skippacks.client.mixin;
 
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.sugar.Local;
 import io.github.adelinam17n.skippacks.client.ducks.SkippedRequiredPackGetter;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -47,16 +48,17 @@ public abstract class PackConfirmScreenMixin{
             method = "method_55612",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/network/Connection;disconnect(Lnet/minecraft/network/chat/Component;)V")
     )
-    private static void openNewScreenByDisconnect(Minecraft minecraft, Screen screen, boolean bl, List<?> list, ClientCommonPacketListenerImpl clientCommonPacketListenerImpl, boolean bl2, CallbackInfo ci){
+    private static void openNewScreenByDisconnect(Minecraft minecraft, Screen screen, boolean bl, List list, ClientCommonPacketListenerImpl clientCommonPacketListenerImpl, boolean bl2, CallbackInfo ci, @Local DownloadedPackSource downloadedPackSource){
         minecraft.setScreen(new ConfirmScreen(
                 xBool -> {
                     if(!xBool){
                         if(clientCommonPacketListenerImpl.serverData != null){
                             ((SkippedRequiredPackGetter) clientCommonPacketListenerImpl.serverData).setRequiredPackSkipped$skipserverpacks(true);
+                            downloadedPackSource.allowServerPacks();
                             ServerList.saveSingleServer(clientCommonPacketListenerImpl.serverData);
                         }
                     }else {
-
+                        downloadedPackSource.rejectServerPacks();
                     }
                     minecraft.setScreen(screen);
 
@@ -71,6 +73,14 @@ public abstract class PackConfirmScreenMixin{
                 Component.literal("Disconnect"),
                 Component.literal("Decline and lie")
         ));
+    }
+
+    @Inject(
+            method = "method_55612",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ServerData;setResourcePackStatus(Lnet/minecraft/client/multiplayer/ServerData$ServerPackStatus;)V", ordinal = 1)
+    )
+    private static void addRejectBeforeOptional(Minecraft minecraft, Screen screen, boolean bl, List list, ClientCommonPacketListenerImpl clientCommonPacketListenerImpl, boolean bl2, CallbackInfo ci, @Local DownloadedPackSource downloadedPackSource){
+        downloadedPackSource.rejectServerPacks();
     }
 
     @ModifyArgs(

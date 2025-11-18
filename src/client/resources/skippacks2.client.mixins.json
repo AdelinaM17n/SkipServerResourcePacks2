@@ -7,7 +7,7 @@
     "ClientCommonPacketListenerImplMixin",
     "EditServerScreenMixin",
     "PackConfirmScreenMixin",
-    "ServerPackManagerMixin"
+    "ServerDataMixin"
   ],
   "injectors": {
     "defaultRequire": 1
