@@ -26,7 +26,7 @@ public class ServerDataMixin implements SkippedRequiredPackGetter {
     private static void injectTail$read$skipserverpacks(CompoundTag nbtCompound, CallbackInfoReturnable<ServerData> cir, @Local ServerData serverData) {
         if (nbtCompound.contains("requiredPackSkipped")) {
             ((SkippedRequiredPackGetter) serverData).setRequiredPackSkipped$skipserverpacks(
-                    nbtCompound.getBoolean("requiredPackSkipped")
+                    nbtCompound.getBoolean("requiredPackSkipped").orElse(false)
             );
         }
     }
@@ -35,7 +35,7 @@ public class ServerDataMixin implements SkippedRequiredPackGetter {
             method = "setResourcePackStatus",
             at = @At("HEAD")
     )
-    private void changeSkipStatusOnPackStusChange(ServerData.ServerPackStatus serverPackStatus, CallbackInfo ci){
+    private void changeSkipStatusOnPackStatusChange(ServerData.ServerPackStatus serverPackStatus, CallbackInfo ci){
         setRequiredPackSkipped$skipserverpacks(false);
     }
 
