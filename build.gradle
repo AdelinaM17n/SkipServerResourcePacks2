@@ -20,7 +20,7 @@ loom {
         }
     }
 
-    accessWidenerPath = file("src/main/resources/skippacks2.accesswidener")
+    //accessWidenerPath = file("src/main/resources/skippacks2.accesswidener")
 }
 
 

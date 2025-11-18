@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerData.class)
@@ -28,6 +29,14 @@ public class ServerDataMixin implements SkippedRequiredPackGetter {
                     nbtCompound.getBoolean("requiredPackSkipped")
             );
         }
+    }
+
+    @Inject(
+            method = "setResourcePackStatus",
+            at = @At("HEAD")
+    )
+    private void changeSkipStatusOnPackStusChange(ServerData.ServerPackStatus serverPackStatus, CallbackInfo ci){
+        setRequiredPackSkipped$skipserverpacks(false);
     }
 
     @Inject(

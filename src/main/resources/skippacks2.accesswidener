@@ -1,6 +1,0 @@
-accessWidener v2 named
-
-accessible field net/minecraft/client/multiplayer/ClientCommonPacketListenerImpl serverData Lnet/minecraft/client/multiplayer/ServerData;
-accessible field net/minecraft/client/multiplayer/ClientCommonPacketListenerImpl connection Lnet/minecraft/network/Connection;
-accessible class net/minecraft/client/multiplayer/ClientCommonPacketListenerImpl$PackConfirmScreen
-accessible class net/minecraft/client/multiplayer/ClientCommonPacketListenerImpl$PackConfirmScreen$PendingRequest

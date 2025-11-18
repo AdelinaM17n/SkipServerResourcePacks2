@@ -5,8 +5,6 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "ClientCommonPacketListenerImplMixin",
-    "EditServerScreenMixin",
-    "PackConfirmScreenMixin",
     "ServerDataMixin"
   ],
   "injectors": {
